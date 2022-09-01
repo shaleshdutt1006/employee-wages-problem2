@@ -1,28 +1,24 @@
 public class EmployeeWages {
+    public static int fullTimeHour = 8;
+    public static int partTimeHour = 4;
 
-
-    public static void main(String[] args) {
-
-        int wagePerHour = 20;
-        int fullTimeHour = 8;
-        int partTimeHour = 4;
+    public static int calcEmployeeWage(String Company, int numberOfDays, int wagePerHour, int workingHours) {
         int totalWorkingDays = 0;
-        int totalHour = 0;
-        int FullTimeWage = 0;
-        int HalfTimeWage = 0;
+        int totalWorkingHours = 0;
+        int totalWages = 0;
         int AbsentWage = 0;
-        while (totalHour < 100 && totalWorkingDays < 20) {
+        while (totalWorkingHours < workingHours && totalWorkingDays < numberOfDays) {
             int employeeCheck = (int) (Math.random() * ((2 + 0) + 1));
             totalWorkingDays++;
             switch (employeeCheck) {
                 case 2:
-                    totalHour = totalHour + fullTimeHour;
-                    FullTimeWage = FullTimeWage + fullTimeHour * wagePerHour;
+                    totalWorkingHours = totalWorkingHours + fullTimeHour;
+                    totalWages = totalWages + fullTimeHour * wagePerHour;
                     System.out.println("Employee is present full time for the day : " + totalWorkingDays);
                     break;
                 case 1:
-                    totalHour = totalHour + partTimeHour;
-                    HalfTimeWage = HalfTimeWage + partTimeHour * wagePerHour;
+                    totalWorkingHours = totalWorkingHours + partTimeHour;
+                    totalWages = totalWages + partTimeHour * wagePerHour;
                     System.out.println("Employee is present Half time for the day : " + totalWorkingDays);
 
                     break;
@@ -32,12 +28,24 @@ public class EmployeeWages {
             }
 
         }
-        System.out.println(
-                "Employee Total Working Days are: " + totalWorkingDays + " And Total Working Hours are: " + totalHour);
-        System.out.println("Employee full time Wages are :" + FullTimeWage);
-        System.out.println("Employee half time Wages are : " + HalfTimeWage);
+        return totalWages;
 
-        System.out.println("Employee total wage for the month is: " + (FullTimeWage + HalfTimeWage));
+    }
+
+
+    public static void main(String[] args) {
+        int numberOfDays, wagePerHour, workingHours;
+
+        int totalEmpWage = calcEmployeeWage("Reliance", wagePerHour = 8, numberOfDays = 10, workingHours = 25);
+
+
+        System.out.println("Employee total wage for Reliance Company is: " + totalEmpWage);
+        int totalEmpWage1 = calcEmployeeWage("Tata", wagePerHour = 15, numberOfDays = 30, workingHours = 30);
+
+        System.out.println("Employee total wage for tata Company is: " + totalEmpWage1);
     }
 
 }
+
+
+
